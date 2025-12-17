@@ -62,7 +62,7 @@ const StatusBar = () => {
         const res = await fetch(SHEET_URL, { cache: 'no-store' });
         if (!res.ok) return;
         const data = await res.json();
-        const latest = Array.isArray(data) && data.length ? data[data.length - 1] : null;
+         const latest = Array.isArray(data) && data.length ? data[data.length - 1] : null;
         if (!canceled && latest) setStatus(deriveState(latest));
       } catch (_) {
         // silent fallback
@@ -75,7 +75,7 @@ const StatusBar = () => {
       canceled = true;
       clearInterval(interval);
     };
-  }, []);
+   }, []);
 
   return (
     <div className={`status-pill status-pill--${status.state}`}>
