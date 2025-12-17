@@ -10,121 +10,290 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="hero">
-    <div class="hero__content">
-      <p class="eyebrow">Identitas Digital</p>
-      <h1>Toko Sumber Baru</h1>
-      <p class="tagline">Toko kebutuhan harian di kawasan Kalijudan, Surabaya</p>
-      <div class="hero__badge">Jam buka: 06.00 - 22.00 WIB</div>
-    </div>
-  </header>
+  <div id="root"></div>
 
-  <main>
-    <section class="card grid" aria-labelledby="identitas-heading">
-      <div class="card__header">
-        <p class="eyebrow">1. Identitas Toko</p>
-        <h2 id="identitas-heading">Inti Utama</h2>
-        <p class="muted">Menegaskan keberadaan toko secara digital, jelas dan dapat dirujuk.</p>
-      </div>
-      <div class="card__body">
-        <dl class="details">
-          <div class="details__item">
-            <dt>Nama Toko</dt>
-            <dd>Toko Sumber Baru</dd>
-          </div>
-          <div class="details__item">
-            <dt>Jenis Usaha</dt>
-            <dd>Toko kebutuhan harian (sembako & perlengkapan rumah)</dd>
-          </div>
-          <div class="details__item">
-            <dt>Lokasi Umum</dt>
-            <dd>Kalijudan, Surabaya</dd>
-          </div>
-          <div class="details__item">
-            <dt>Jam Operasional</dt>
-            <dd>Setiap hari, 06.00 - 22.00 WIB</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-router-dom@6/umd/react-router-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <section class="card grid" aria-labelledby="tentang-heading">
-      <div class="card__header">
-        <p class="eyebrow">2. Tentang Toko</p>
-        <h2 id="tentang-heading">Konteks Singkat</h2>
-        <p class="muted">Narasi netral yang membangun kedekatan tanpa mengarah ke promosi.</p>
-      </div>
-      <div class="card__body">
-        <p>Toko Sumber Baru berdiri tahun 2010 sebagai toko kelontong keluarga yang melayani kebutuhan harian warga sekitar. Fokus kami adalah menyediakan sembako, minuman, dan perlengkapan rumah tangga dasar dengan harga wajar. Kehadiran toko ini mendukung aktivitas keseharian warga Kalijudan dengan stok yang mudah dijangkau dan layanan yang ramah.</p>
-      </div>
-    </section>
+  <script type="text/babel">
+    const { createRoot } = ReactDOM;
+    const { HashRouter, Routes, Route, NavLink, Link } = ReactRouterDOM;
 
-    <section class="card grid" aria-labelledby="produk-heading">
-      <div class="card__header">
-        <p class="eyebrow">3. Produk / Kategori Barang</p>
-        <h2 id="produk-heading">Apa yang Dijual</h2>
-        <p class="muted">Tidak daftar lengkap, hanya gambaran karakter toko.</p>
-      </div>
-      <div class="card__body">
-        <ul class="pill-list">
-          <li class="pill">Sembako (beras, minyak, gula)</li>
-          <li class="pill">Minuman kemasan & serbuk</li>
-          <li class="pill">Kebutuhan rumah tangga</li>
-          <li class="pill">Produk kebersihan</li>
-          <li class="pill">Camilan ringan</li>
-        </ul>
-      </div>
-    </section>
+    const identity = {
+      name: "Toko Sumber Baru",
+      type: "Toko kebutuhan harian (sembako & perlengkapan rumah)",
+      location: "Kalijudan, Surabaya",
+      hours: "Setiap hari, 06.00 - 22.00 WIB",
+    };
 
-    <section class="card grid" aria-labelledby="layanan-heading">
-      <div class="card__header">
-        <p class="eyebrow">4. Informasi Layanan</p>
-        <h2 id="layanan-heading">Cara Berbelanja</h2>
-        <p class="muted">Praktis dan relevan untuk warga sekitar.</p>
-      </div>
-      <div class="card__body">
-        <ul class="list">
-          <li>Belanja langsung di toko dengan bantuan penjaga.</li>
-          <li>Pembayaran tunai dan non-tunai (QRIS & transfer bank).</li>
-          <li>Jam ramai biasa: 06.00 - 09.00 dan 17.00 - 20.00 WIB.</li>
-        </ul>
-      </div>
-    </section>
+    const categories = [
+      "Sembako (beras, minyak, gula)",
+      "Minuman kemasan & serbuk",
+      "Kebutuhan rumah tangga",
+      "Produk kebersihan",
+      "Camilan ringan",
+    ];
 
-    <section class="card grid" aria-labelledby="kontak-heading">
-      <div class="card__header">
-        <p class="eyebrow">5. Kontak & Akses</p>
-        <h2 id="kontak-heading">Hubungi Toko</h2>
-        <p class="muted">Memudahkan interaksi dan rujukan lokasi.</p>
-      </div>
-      <div class="card__body">
-        <div class="contact">
-          <div>
-            <p class="label">Nomor Toko / WhatsApp</p>
-            <p class="contact__value">0812-3456-7890</p>
+    const services = [
+      "Belanja langsung di toko dengan bantuan penjaga.",
+      "Pembayaran tunai dan non-tunai (QRIS & transfer bank).",
+      "Jam ramai: 06.00 - 09.00 dan 17.00 - 20.00 WIB.",
+    ];
+
+    const contacts = {
+      phone: "0812-3456-7890",
+      direction: "Dekat Pasar Kalijudan, masuk dari Jalan Sukolilo Lor, depan gang Waru.",
+    };
+
+    const navItems = [
+      { path: "/", label: "Beranda" },
+      { path: "/produk", label: "Produk" },
+      { path: "/layanan", label: "Layanan" },
+      { path: "/kontak", label: "Kontak" },
+      { path: "/pendampingan", label: "Pendampingan" },
+    ];
+
+    const Badge = ({ text }) => <span className="badge">{text}</span>;
+
+    const InfoCard = ({ title, eyebrow, description, children }) => (
+      <section className="card" aria-labelledby={`${title.toLowerCase().replace(/\s+/g, '-')}-heading`}>
+        <div className="card__header">
+          <p className="eyebrow">{eyebrow}</p>
+          <h2 id={`${title.toLowerCase().replace(/\s+/g, '-')}-heading`}>{title}</h2>
+          {description && <p className="muted">{description}</p>}
+        </div>
+        <div className="card__body">{children}</div>
+      </section>
+    );
+
+    const Hero = () => (
+      <header className="hero">
+        <div className="hero__content">
+          <p className="eyebrow">Identitas Digital</p>
+          <h1>Toko Sumber Baru</h1>
+          <p className="tagline">Toko kebutuhan harian di kawasan Kalijudan, Surabaya</p>
+          <div className="hero__badges">
+            <Badge text="Jam buka: 06.00 - 22.00 WIB" />
+            <Badge text="Pendampingan mahasiswa" />
           </div>
-          <div>
-            <p class="label">Petunjuk Lokasi</p>
-            <p class="contact__value">Dekat Pasar Kalijudan, masuk dari Jalan Sukolilo Lor, depan gang Waru.</p>
+          <div className="hero__cta">
+            <Link className="button button--solid" to="/kontak">Kontak & Akses</Link>
+            <Link className="button button--ghost" to="/produk">Lihat Produk Utama</Link>
           </div>
         </div>
-      </div>
-    </section>
+      </header>
+    );
 
-    <section class="card card--subtle" aria-labelledby="pendampingan-heading">
-      <div class="card__header">
-        <p class="eyebrow">Pendampingan & Dokumentasi</p>
-        <h2 id="pendampingan-heading">Catatan Singkat</h2>
-        <p class="muted">Informasi pendukung mengenai kegiatan kerja praktek.</p>
-      </div>
-      <div class="card__body">
-        <p>Toko ini didampingi oleh mahasiswa Universitas X dalam penerapan pencatatan transaksi digital sebagai bagian dari kegiatan kerja praktek. Dokumentasi pendampingan dan pembaruan sistem dicatat terpisah dari halaman utama.</p>
-      </div>
-    </section>
-  </main>
+    const IdentitySection = () => (
+      <InfoCard
+        title="Inti Utama"
+        eyebrow="1. Identitas Toko"
+        description="Menegaskan keberadaan toko secara digital, jelas dan dapat dirujuk."
+      >
+        <dl className="details">
+          <div className="details__item">
+            <dt>Nama Toko</dt>
+            <dd>{identity.name}</dd>
+          </div>
+          <div className="details__item">
+            <dt>Jenis Usaha</dt>
+            <dd>{identity.type}</dd>
+          </div>
+          <div className="details__item">
+            <dt>Lokasi Umum</dt>
+            <dd>{identity.location}</dd>
+          </div>
+          <div className="details__item">
+            <dt>Jam Operasional</dt>
+            <dd>{identity.hours}</dd>
+          </div>
+        </dl>
+      </InfoCard>
+    );
 
-  <footer class="footer">
-    <p>Landing page mitra toko dibuat sebagai sarana identitas dan representasi digital awal bagi UMKM, yang difasilitasi oleh mahasiswa kerja praktek sebagai bagian dari pendampingan digital dasar.</p>
-  </footer>
+    const AboutSection = () => (
+      <InfoCard
+        title="Konteks Singkat"
+        eyebrow="2. Tentang Toko"
+        description="Narasi netral yang membangun kedekatan tanpa mengarah ke promosi."
+      >
+        <p>
+          Toko Sumber Baru berdiri tahun 2010 sebagai toko kelontong keluarga yang melayani kebutuhan harian warga
+          sekitar. Fokus kami adalah menyediakan sembako, minuman, dan perlengkapan rumah tangga dasar dengan harga
+          wajar. Kehadiran toko ini mendukung aktivitas keseharian warga Kalijudan dengan stok yang mudah dijangkau dan
+          layanan yang ramah.
+        </p>
+      </InfoCard>
+    );
+
+    const ProductsSection = () => (
+      <InfoCard
+        title="Apa yang Dijual"
+        eyebrow="3. Produk / Kategori Barang"
+        description="Tidak daftar lengkap, hanya gambaran karakter toko."
+      >
+        <ul className="pill-list">
+          {categories.map((item) => (
+            <li className="pill" key={item}>{item}</li>
+          ))}
+        </ul>
+      </InfoCard>
+    );
+
+    const ServicesSection = () => (
+      <InfoCard
+        title="Cara Berbelanja"
+        eyebrow="4. Informasi Layanan"
+        description="Praktis dan relevan untuk warga sekitar."
+      >
+        <ul className="list">
+          {services.map((service) => (
+            <li key={service}>{service}</li>
+          ))}
+        </ul>
+      </InfoCard>
+    );
+
+    const ContactSection = () => (
+      <InfoCard
+        title="Hubungi Toko"
+        eyebrow="5. Kontak & Akses"
+        description="Memudahkan interaksi dan rujukan lokasi."
+      >
+        <div className="contact">
+          <div>
+            <p className="label">Nomor Toko / WhatsApp</p>
+            <p className="contact__value">{contacts.phone}</p>
+          </div>
+          <div>
+            <p className="label">Petunjuk Lokasi</p>
+            <p className="contact__value">{contacts.direction}</p>
+          </div>
+        </div>
+      </InfoCard>
+    );
+
+    const AssistanceSection = () => (
+      <InfoCard
+        title="Catatan Pendampingan"
+        eyebrow="Pendampingan & Dokumentasi"
+        description="Informasi pendukung mengenai kegiatan kerja praktek."
+      >
+        <p>
+          Toko ini didampingi oleh mahasiswa Universitas X dalam penerapan pencatatan transaksi digital sebagai bagian
+          dari kegiatan kerja praktek. Dokumentasi pendampingan dan pembaruan sistem dicatat terpisah dari halaman
+          utama.
+        </p>
+      </InfoCard>
+    );
+
+    const HomePage = () => (
+      <main>
+        <Hero />
+        <div className="grid grid--two">
+          <IdentitySection />
+          <AboutSection />
+        </div>
+        <div className="grid grid--two">
+          <ProductsSection />
+          <ServicesSection />
+        </div>
+        <ContactSection />
+      </main>
+    );
+
+    const ProductsPage = () => (
+      <main>
+        <section className="page-heading">
+          <p className="eyebrow">Halaman Produk</p>
+          <h1>Kategori Barang</h1>
+          <p className="muted">Gambaran singkat tentang barang yang tersedia di toko.</p>
+        </section>
+        <ProductsSection />
+        <AssistanceSection />
+      </main>
+    );
+
+    const ServicesPage = () => (
+      <main>
+        <section className="page-heading">
+          <p className="eyebrow">Halaman Layanan</p>
+          <h1>Cara Belanja & Dukungan</h1>
+          <p className="muted">Informasi praktis untuk warga sekitar saat berkunjung.</p>
+        </section>
+        <ServicesSection />
+        <ContactSection />
+      </main>
+    );
+
+    const ContactPage = () => (
+      <main>
+        <section className="page-heading">
+          <p className="eyebrow">Halaman Kontak</p>
+          <h1>Kontak & Akses</h1>
+          <p className="muted">Hubungi toko atau temukan lokasi terdekat.</p>
+        </section>
+        <ContactSection />
+        <AssistanceSection />
+      </main>
+    );
+
+    const AssistancePage = () => (
+      <main>
+        <section className="page-heading">
+          <p className="eyebrow">Halaman Pendampingan</p>
+          <h1>Dokumentasi Singkat</h1>
+          <p className="muted">Catatan netral mengenai program kerja praktek.</p>
+        </section>
+        <AssistanceSection />
+      </main>
+    );
+
+    const Layout = () => (
+      <div className="app-shell">
+        <nav className="nav">
+          <div className="nav__brand">
+            <Link to="/">Toko Sumber Baru</Link>
+          </div>
+          <div className="nav__links">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                end={item.path === "/"}
+                className={({ isActive }) => isActive ? "nav__link nav__link--active" : "nav__link"}
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+        </nav>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/produk" element={<ProductsPage />} />
+          <Route path="/layanan" element={<ServicesPage />} />
+          <Route path="/kontak" element={<ContactPage />} />
+          <Route path="/pendampingan" element={<AssistancePage />} />
+        </Routes>
+        <footer className="footer">
+          <p>
+            Landing page mitra toko dibuat sebagai sarana identitas dan representasi digital awal bagi UMKM, yang difasilitasi
+            oleh mahasiswa kerja praktek sebagai bagian dari pendampingan digital dasar.
+          </p>
+        </footer>
+      </div>
+    );
+
+    const App = () => (
+      <HashRouter>
+        <Layout />
+      </HashRouter>
+    );
+
+    const root = createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
 </body>
 </html>
