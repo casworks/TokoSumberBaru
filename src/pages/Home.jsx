@@ -24,8 +24,8 @@ const Home = () => (
 
     <section className="section">
       <div className="section__head">
-        <h2>Keunggulan Toko</h2>
-        <p className="muted">Ringkasan cepat untuk calon pembeli dan reseller.</p>
+        <h2>Ringkasan Keunggulan</h2>
+        <p className="muted">3–4 poin utama agar pembeli dan reseller cepat paham.</p>
       </div>
       <div className="grid grid--four">
         {highlights.map((item) => (
@@ -39,10 +39,13 @@ const Home = () => (
     </section>
 
     <section className="section stats">
+      <div className="section__head">
+        <h2>Statistik Toko</h2>
+        <p className="muted">Angka singkat untuk bangun kepercayaan.</p>
+      </div>
       <div className="stats__grid">
         {stats.map((item) => (
           <div key={item.label} className="stat">
-            <div className="stat__icon">{item.icon}</div>
             <div className="stat__value">{item.value}</div>
             <div className="stat__label">{item.label}</div>
           </div>
@@ -69,7 +72,7 @@ const Home = () => (
     <section className="section">
       <div className="section__head">
         <h2>Cara Belanja</h2>
-        <p className="muted">Memandu pelanggan baru agar cepat transaksi.</p>
+        <p className="muted">Step sederhana tanpa ribet, cocok untuk pelanggan baru.</p>
       </div>
       <div className="steps">
         {shoppingSteps.map((step, idx) => (

@@ -20,13 +20,13 @@ const Kontak = () => (
           <StatusBar />
           <p className="muted">Jam standar: {identity.hours}</p>
         </div>
-      <div className="contact-block">
-        <p className="label">WhatsApp</p>
-        <a className="button button--solid" href={identity.whatsappLink} target="_blank" rel="noreferrer">
-          Hubungi via WhatsApp
-        </a>
+        <div className="contact-block">
+          <p className="label">WhatsApp</p>
+          <a className="button button--solid" href={identity.whatsappLink} target="_blank" rel="noreferrer">
+            Hubungi via WhatsApp
+          </a>
+        </div>
       </div>
-    </div>
       <div className="map-embed" aria-label="Google Maps embed">
         <iframe
           title="Lokasi Toko Sumber Baru"

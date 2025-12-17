@@ -23,7 +23,7 @@ export const highlights = [
 
 export const stats = [
   { label: 'Reseller aktif', value: '8+', icon: '🏪' },
-  { label: 'Pelanggan', value: '1.289+', icon: '👥' },
+  { label: 'Pelanggan', value: '1.289', icon: '👥' },
   { label: 'Produk tersedia', value: '40+', icon: '📦' },
   { label: 'Beroperasi sejak', value: '2018', icon: '📆' }
 ];
@@ -90,6 +90,15 @@ export const navItems = [
   { path: '/', label: 'Beranda' },
   { path: '/produk', label: 'Produk' },
   { path: '/layanan', label: 'Layanan' },
-  { path: '/tentang', label: 'Tentang Toko' },
-  { path: '/kontak', label: 'Kontak' }
+  { path: '/loker', label: 'Loker' }
+];
+
+export const jobOpenings = [
+  {
+    title: 'Helper Toko (Full Time)',
+    type: 'Full Time',
+    schedule: '07.00–15.00',
+    requirements: ['Angkat/atur stok rak & gudang', 'Cek tanggal kadaluarsa', 'Sigap bantu kasir saat ramai'],
+    note: 'Domisili dekat Kalijudan/Mulyorejo lebih baik'
+  }
 ];
