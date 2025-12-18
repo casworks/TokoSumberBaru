@@ -22,7 +22,7 @@ const Home = () => (
       </div>
     </section>
 
-    <section className="section">
+    <section className="section section--accent">
       <div className="section__head">
         <h2>Ringkasan Keunggulan</h2>
         <p className="muted">3–4 poin utama agar pembeli dan reseller cepat paham.</p>
@@ -53,7 +53,7 @@ const Home = () => (
       </div>
     </section>
 
-    <section className="section">
+    <section className="section section--accent">
       <div className="section__head">
         <h2>Kategori Produk</h2>
         <p className="muted">Pilihan utama yang tersedia setiap hari.</p>

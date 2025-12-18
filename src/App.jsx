@@ -22,7 +22,10 @@ const Layout = () => {
       <header className="header">
         <div className="header__bar">
           <div className="nav__brand">
-            <Link to="/">Toko Sumber Baru</Link>
+            <Link to="/">
+              <span className="logo-pill">TOKO</span>
+              <span className="logo-text">Sumber Baru</span>
+            </Link>
           </div>
           <nav className="nav__links">
             {navItems.map((item) => (
