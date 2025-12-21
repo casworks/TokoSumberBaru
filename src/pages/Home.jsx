@@ -2,7 +2,7 @@ import { identity, heroContent, highlights, stats, categoriesHome, shoppingSteps
 
 const Home = () => (
   <main>
-    <section className="hero hero--split">
+    <section className="hero hero--split hero--dark">
       <div className="hero__content">
         <div className="hero__text">
           <p className="eyebrow">Toko Sumber Baru</p>
@@ -22,7 +22,7 @@ const Home = () => (
       </div>
     </section>
 
-    <section className="section section--accent">
+    <section className="section section--panel">
       <div className="section__head">
         <h2>Ringkasan Keunggulan</h2>
         <p className="muted">3–4 poin utama agar pembeli dan reseller cepat paham.</p>
@@ -38,7 +38,7 @@ const Home = () => (
       </div>
     </section>
 
-    <section className="section stats">
+    <section className="section section--panel stats">
       <div className="section__head">
         <h2>Statistik Toko</h2>
         <p className="muted">Angka singkat untuk bangun kepercayaan.</p>
@@ -69,7 +69,7 @@ const Home = () => (
       </div>
     </section>
 
-    <section className="section">
+    <section className="section section--panel">
       <div className="section__head">
         <h2>Cara Belanja</h2>
         <p className="muted">Step sederhana tanpa ribet, cocok untuk pelanggan baru.</p>
