@@ -6,9 +6,9 @@ const Hero = () => (
     <div className="hero__content">
       <p className="eyebrow">Identitas Digital</p>
       <h1>Toko Sumber Baru</h1>
-      <p className="tagline">Toko kebutuhan harian di kawasan Kalijudan, Surabaya</p>
+      <p className="tagline">Toko kebutuhan harian di kawasan SumberBaru, <Situbondo></Situbondo></p>
       <div className="hero__badges">
-        <Badge text="Jam buka: 06.00 - 22.00 WIB" />
+        <Badge text="Jam buka: 05.00 - 22.00 WIB" />
         <Badge text="Pendampingan mahasiswa" />
       </div>
       <div className="hero__cta">
