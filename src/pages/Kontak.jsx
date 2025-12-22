@@ -6,7 +6,6 @@ const Kontak = () => (
     <section className="section page-heading">
       <p className="eyebrow">Kontak</p>
       <h1>Hubungi & Temukan Kami</h1>
-      <p className="muted">Info alamat, jam buka, dan rute menuju toko.</p>
     </section>
 
     <section className="section contact-layout">
@@ -30,7 +29,7 @@ const Kontak = () => (
       <div className="map-embed" aria-label="Google Maps embed">
         <iframe
           title="Lokasi Toko Sumber Baru"
-          src="https://www.google.com/maps?q=Toko+Sumber+Baru+Kalijudan&output=embed"
+          src="https://www.google.com/maps?q=-7.7819282,114.3033084&z=21&output=embed"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>

@@ -1,5 +1,9 @@
 import { useMemo, useState } from 'react';
 import { identity, productCategories, featuredProducts } from '../data/content.js';
+import Icon from '../components/Icon.jsx';
+
+const isRedCard = (index) => index % 8 < 4;
+const cardTone = (index) => (isRedCard(index) ? '#b00014' : '#e9edf5');
 
 const Produk = () => {
   const [query, setQuery] = useState('');
@@ -31,7 +35,6 @@ const Produk = () => {
       <section className="section page-heading">
         <p className="eyebrow">Produk yang Tersedia</p>
         <h1>Kategori & Contoh Unggulan</h1>
-        <p className="muted">Ringkasan kategori utama dan contoh produk tanpa harga fix.</p>
       </section>
 
       <section className="section section--filters">
@@ -54,12 +57,17 @@ const Produk = () => {
       <section className="section">
         <div className="section__head">
           <h2>Daftar Kategori</h2>
-          <p className="muted">Detail singkat isi rak untuk ecer dan grosir.</p>
         </div>
-        <div className="grid grid--two">
-          {filteredCategories.map((cat) => (
-            <div key={cat.title} className="card card--category card--tall">
-              <div className="icon">{cat.icon}</div>
+        <div className="grid grid--two grid--illustration">
+          {filteredCategories.map((cat, idx) => (
+            <div
+              key={cat.title}
+              className={`card card--category card--illustration card--icon-inset card--tall ${
+                isRedCard(idx) ? 'card--on-dark' : ''
+              }`}
+              style={{ '--card-bg': cardTone(idx) }}
+            >
+              <Icon icon={cat.icon} alt={cat.title} className="icon" size={140} />
               <h3>{cat.title}</h3>
               <ul className="list list--plain">
                 {cat.items.map((item) => (
@@ -75,7 +83,6 @@ const Produk = () => {
       <section className="section">
         <div className="section__head">
           <h2>Produk Unggulan</h2>
-          <p className="muted">Contoh cepat tanpa harga detail, fleksibel untuk stok.</p>
         </div>
         <div className="feature-list">
           {filteredFeatured.map((item) => (

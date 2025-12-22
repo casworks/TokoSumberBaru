@@ -4,7 +4,7 @@ const SHEET_URL = 'https://opensheet.elk.sh/1u0CTfLgHBTxfuKUmJdjJr5VxVTSZmCgoggQ
 const OPEN_HOUR = 5;
 const CLOSE_HOUR = 22;
 
-const defaultState = { state: 'open', label: '🟢 Buka · 05.00–22.00', timestamp: '' };
+const defaultState = { state: 'open', label: 'Buka - 05.00-22.00', timestamp: '' };
 
 const timeAgo = (value) => {
   const date = new Date(value);
@@ -53,20 +53,20 @@ const deriveState = (row = {}) => {
 
   if (lowered.includes('istirahat')) {
     const rel = timeAgo(timestampRaw);
-    const detail = rel || timestampRaw ? `· ${rel || timestampRaw}` : '';
-    return { state: 'break', label: `🟡 Istirahat ${detail}`.trim(), timestamp: timestampRaw };
+    const detail = rel || timestampRaw ? `- ${rel || timestampRaw}` : '';
+    return { state: 'break', label: `Istirahat ${detail}`.trim(), timestamp: timestampRaw };
   }
 
   const withinHours = isWithinOperational(tsDate);
   if (lowered.includes('tutup') || !withinHours) {
-    return { state: 'closed', label: '🔴 Tutup · Buka 05.00', timestamp: timestampRaw };
+    return { state: 'closed', label: 'Tutup - Buka 05.00', timestamp: timestampRaw };
   }
 
   if (lowered.includes('buka') && withinHours) {
-    return { state: 'open', label: '🟢 Buka · 05.00–22.00', timestamp: timestampRaw };
+    return { state: 'open', label: 'Buka - 05.00-22.00', timestamp: timestampRaw };
   }
 
-  return withinHours ? defaultState : { state: 'closed', label: '🔴 Tutup · Buka 05.00', timestamp: '' };
+  return withinHours ? defaultState : { state: 'closed', label: 'Tutup - Buka 05.00', timestamp: '' };
 };
 
 const StatusBar = () => {

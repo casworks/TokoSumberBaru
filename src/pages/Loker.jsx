@@ -10,13 +10,11 @@ const Loker = () => {
       <section className="section page-heading">
         <p className="eyebrow">Lowongan</p>
         <h1>Bergabung dengan {identity.name}</h1>
-        <p className="muted">Posisi aktif untuk dukung operasional toko harian.</p>
       </section>
 
       <section className="section">
         <div className="section__head">
           <h2>Posisi Tersedia</h2>
-          <p className="muted">Saat ini kami buka 1 posisi prioritas.</p>
         </div>
         <div className="grid grid--two">
           {jobOpenings.map((job) => (

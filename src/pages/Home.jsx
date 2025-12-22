@@ -1,4 +1,9 @@
 import { identity, heroContent, highlights, stats, categoriesHome, shoppingSteps } from '../data/content.js';
+import Icon from '../components/Icon.jsx';
+import storePict from '../assets/store-pict.png';
+
+const highlightTones = ['#e9edf5'];
+const categoryTones = ['#b00014'];
 
 const Home = () => (
   <main>
@@ -15,8 +20,8 @@ const Home = () => (
           </div>
         </div>
         <div className="hero__visual">
-          <div className="photo-placeholder" aria-label={heroContent.imageAlt}>
-            <span>Foto Toko</span>
+          <div className="photo-frame" aria-label={heroContent.imageAlt}>
+            <img src={storePict} alt={heroContent.imageAlt} loading="lazy" />
           </div>
         </div>
       </div>
@@ -24,13 +29,16 @@ const Home = () => (
 
     <section className="section section--panel">
       <div className="section__head">
-        <h2>Ringkasan Keunggulan</h2>
-        <p className="muted">3–4 poin utama agar pembeli dan reseller cepat paham.</p>
+        <h2>Keunggulan</h2>
       </div>
       <div className="grid grid--four">
-        {highlights.map((item) => (
-          <div key={item.title} className="card card--light">
-            <div className="icon">{item.icon}</div>
+        {highlights.map((item, idx) => (
+          <div
+            key={item.title}
+            className="card card--illustration"
+            style={{ '--card-bg': highlightTones[idx % highlightTones.length] }}
+          >
+            <Icon icon={item.icon} alt={item.title} className="icon" size={140} />
             <h3>{item.title}</h3>
             <p className="muted">{item.desc}</p>
           </div>
@@ -56,12 +64,15 @@ const Home = () => (
     <section className="section section--accent">
       <div className="section__head">
         <h2>Kategori Produk</h2>
-        <p className="muted">Pilihan utama yang tersedia setiap hari.</p>
       </div>
       <div className="grid grid--three">
-        {categoriesHome.map((item) => (
-          <div key={item.title} className="card card--category">
-            <div className="icon">{item.icon}</div>
+        {categoriesHome.map((item, idx) => (
+          <div
+            key={item.title}
+            className="card card--category card--illustration card--icon-inset card--on-dark"
+            style={{ '--card-bg': categoryTones[idx % categoryTones.length] }}
+          >
+            <Icon icon={item.icon} alt={item.title} className="icon" size={130} />
             <h3>{item.title}</h3>
             <p className="muted">{item.desc}</p>
           </div>
@@ -86,9 +97,9 @@ const Home = () => (
 
     <section className="section cta">
       <div className="cta__content">
-        <h2>Butuh stok hari ini?</h2>
+        <h2>Tanya stok sebelum datang</h2>
         <a className="button button--solid" href={identity.whatsappLink} target="_blank" rel="noreferrer">
-          Chat WhatsApp Sekarang
+          Chat WhatsApp
         </a>
       </div>
     </section>
