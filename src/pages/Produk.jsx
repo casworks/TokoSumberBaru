@@ -56,7 +56,7 @@ const Produk = () => {
 
       <section className="section">
         <div className="section__head">
-          <h2>Daftar Kategori</h2>
+          <h2>Daftar Kategori dan Barang</h2>
         </div>
         <div className="grid grid--two grid--illustration">
           {filteredCategories.map((cat, idx) => (
