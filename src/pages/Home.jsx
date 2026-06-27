@@ -27,7 +27,7 @@ const Home = () => (
       </div>
     </section>
 
-    <section className="section section--panel">
+    <section className="section">
       <div className="section__head">
         <h2>Keunggulan</h2>
       </div>
@@ -46,10 +46,10 @@ const Home = () => (
       </div>
     </section>
 
-    <section className="section section--panel stats">
+    <section className="section stats">
       <div className="section__head">
         <h2>Statistik Toko</h2>
-        <p className="muted">Angka singkat untuk bangun kepercayaan.</p>
+        <p>Angka singkat tentang toko kami.</p>
       </div>
       <div className="stats__grid">
         {stats.map((item) => (
@@ -80,10 +80,10 @@ const Home = () => (
       </div>
     </section>
 
-    <section className="section section--panel">
+    <section className="section">
       <div className="section__head">
         <h2>Cara Belanja</h2>
-        <p className="muted">Step sederhana tanpa ribet, cocok untuk pelanggan baru.</p>
+        <p>Langkah sederhana — cocok untuk pelanggan baru.</p>
       </div>
       <div className="steps">
         {shoppingSteps.map((step, idx) => (

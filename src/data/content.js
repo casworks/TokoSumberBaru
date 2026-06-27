@@ -31,6 +31,7 @@ export const identity = {
 
 export const heroContent = {
   headline: 'Memenuhi Kebutuhan Harian Masyarakat Area Sumberwaru',
+  sub: 'Sembako, makanan & minuman, perawatan, hingga kebutuhan bayi — tersedia lengkap dengan harga bersaing.',
   cta: 'Tanya Stok via WhatsApp',
   imageAlt: 'Fasad Toko Sumber Baru'
 };

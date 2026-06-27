@@ -1,13 +1,24 @@
 import { useMemo, useState } from 'react';
 import { identity, productCategories, featuredProducts } from '../data/content.js';
-import Icon from '../components/Icon.jsx';
 
-const isRedCard = (index) => index % 8 < 4;
-const cardTone = (index) => (isRedCard(index) ? '#b00014' : '#e9edf5');
+const TAGS_DEFAULT = 4;
+
+const getBadgeClass = (note) => {
+  const n = note.toLowerCase();
+  if (n.includes('grosir') && n.includes('ecer')) return 'badge--both';
+  if (n.includes('grosir')) return 'badge--grosir';
+  return 'badge--ecer';
+};
 
 const Produk = () => {
   const [query, setQuery] = useState('');
   const [showGrosir, setShowGrosir] = useState(false);
+  const [expandedCards, setExpandedCards] = useState(new Set());
+
+  const expand = (title) =>
+    setExpandedCards((prev) => new Set([...prev, title]));
+  const collapse = (title) =>
+    setExpandedCards((prev) => { const s = new Set(prev); s.delete(title); return s; });
 
   const filteredCategories = useMemo(() => {
     const q = query.toLowerCase();
@@ -32,19 +43,32 @@ const Produk = () => {
 
   return (
     <main>
-      <section className="section page-heading">
-        <p className="eyebrow">Produk yang Tersedia</p>
-        <h1>Kategori & Contoh Unggulan</h1>
-      </section>
+      {/* Heading + integrated search */}
+      <div className="prod-heading">
+        <div className="prod-heading__inner">
+          <div>
+            <span className="eyebrow">Produk yang Tersedia</span>
+            <h1>Kategori &amp; Produk</h1>
+            <p className="prod-heading__meta">
+              {productCategories.length} kategori &nbsp;·&nbsp; {featuredProducts.length} produk unggulan
+            </p>
+          </div>
+          <div className="prod-search-wrap">
+            <input
+              className="input"
+              type="search"
+              placeholder="Cari kategori atau barang…"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              aria-label="Cari produk"
+            />
+          </div>
+        </div>
+      </div>
 
-      <section className="section section--filters">
-        <input
-          type="search"
-          className="input"
-          placeholder="Cari kategori atau barang..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
+      {/* Filter bar */}
+      <div className="filter-bar">
+        <span className="filter-bar__label">Filter</span>
         <button
           className={`pill pill--toggle ${showGrosir ? 'pill--toggle-active' : ''}`}
           onClick={() => setShowGrosir((v) => !v)}
@@ -52,52 +76,129 @@ const Produk = () => {
         >
           Grosir saja
         </button>
-      </section>
+        {query && (
+          <span className="filter-bar__query">
+            Hasil untuk &ldquo;<strong>{query}</strong>&rdquo;
+          </span>
+        )}
+        {query && (
+          <button className="pill pill--toggle" type="button" onClick={() => setQuery('')}>
+            ✕ Reset
+          </button>
+        )}
+      </div>
 
+      {/* Category grid */}
       <section className="section">
         <div className="section__head">
-          <h2>Daftar Kategori dan Barang</h2>
+          <h2>Kategori Produk</h2>
+          <p>
+            {filteredCategories.length} dari {productCategories.length} kategori ditampilkan
+          </p>
         </div>
-        <div className="grid grid--two grid--illustration">
-          {filteredCategories.map((cat, idx) => (
-            <div
-              key={cat.title}
-              className={`card card--category card--illustration card--icon-inset card--tall ${
-                isRedCard(idx) ? 'card--on-dark' : ''
-              }`}
-              style={{ '--card-bg': cardTone(idx) }}
-            >
-              <Icon icon={cat.icon} alt={cat.title} className="icon" size={140} />
-              <h3>{cat.title}</h3>
-              <ul className="list list--plain">
-                {cat.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+        <div className="cat-grid">
+          {filteredCategories.map((cat) => {
+            const isExpanded = expandedCards.has(cat.title);
+            const visibleItems = isExpanded ? cat.items : cat.items.slice(0, TAGS_DEFAULT);
+            const hidden = cat.items.length - TAGS_DEFAULT;
+            return (
+              <div
+                key={cat.title}
+                className="cat-card"
+                onMouseLeave={() => collapse(cat.title)}
+              >
+                <div className="cat-card__icon">
+                  <img src={cat.icon} alt={cat.title} loading="lazy" />
+                </div>
+                <div className="cat-card__body">
+                  <div className="cat-card__title">{cat.title}</div>
+                  <span className="cat-card__count">{cat.items.length} item</span>
+                  <div className="cat-card__tags">
+                    {visibleItems.map((item) => (
+                      <span key={item} className="cat-card__tag">{item}</span>
+                    ))}
+                    {!isExpanded && hidden > 0 && (
+                      <button
+                        type="button"
+                        className="cat-card__tag cat-card__tag--more"
+                        onClick={() => expand(cat.title)}
+                      >
+                        +{hidden} lagi
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+
+          {!filteredCategories.length && (
+            <div className="empty-state">
+              <p>
+                Tidak ada hasil untuk &ldquo;<strong>{query}</strong>&rdquo;.
+                Hubungi kami langsung untuk cek ketersediaan.
+              </p>
+              <a
+                className="button button--solid"
+                href={`${identity.whatsappLink}?text=${encodeURIComponent(
+                  `Halo, apakah tersedia: ${query}?`
+                )}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Tanya via WhatsApp
+              </a>
             </div>
-          ))}
-          {!filteredCategories.length && <p className="muted">Tidak ada kategori cocok.</p>}
+          )}
         </div>
       </section>
 
-      <section className="section">
+      {/* Featured products */}
+      <section className="section" style={{ background: '#fafafa' }}>
         <div className="section__head">
           <h2>Produk Unggulan</h2>
+          <p>Stok tersedia — tanya harga &amp; ketersediaan via WhatsApp sebelum datang.</p>
         </div>
-        <div className="feature-list">
+        <div className="prod-grid">
           {filteredFeatured.map((item) => (
-            <div key={item.name} className="feature-item">
-              <div>
-                <h3>{item.name}</h3>
-                <p className="muted">{item.pack}</p>
+            <div key={item.name} className="prod-card">
+              <div className="prod-card__name">{item.name}</div>
+              <div className="prod-card__pack">{item.pack}</div>
+              <div className="prod-card__footer">
+                <span className={`badge ${getBadgeClass(item.note)}`}>{item.note}</span>
+                <a
+                  className="prod-card__wa"
+                  href={`${identity.whatsappLink}?text=${encodeURIComponent(
+                    `Halo, saya ingin tanya stok ${item.name}`
+                  )}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Tanya stok →
+                </a>
               </div>
-              <span className="pill pill--outline">{item.note}</span>
             </div>
           ))}
-          {!filteredFeatured.length && <p className="muted">Produk belum ditemukan, cek kata kunci lain.</p>}
+          {!filteredFeatured.length && (
+            <div className="empty-state">
+              <p>
+                {showGrosir
+                  ? 'Tidak ada produk grosir yang cocok.'
+                  : 'Produk tidak ditemukan. Coba kata kunci lain.'}
+              </p>
+              <button
+                className="button button--ghost"
+                onClick={() => { setQuery(''); setShowGrosir(false); }}
+                type="button"
+              >
+                Reset filter
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
+      {/* CTA */}
       <section className="section cta">
         <div className="cta__content">
           <h2>Tanya stok sebelum datang</h2>
